@@ -1,0 +1,59 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - release-candidate
+      - develop
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: genesislcap/appdev-workflows/.github/workflows/build-gradle.yml@develop
+    with:
+      repo-name: genesis-gks
+      product_name: genesis-gks
+      java_version: "17"
+      node_version: "20.x"
+      version: ${{ github.ref_name }}
+    secrets:
+      GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}
+      JFROG_USERNAME: ${{secrets.JFROG_USERNAME}}
+      JFROG_EMAIL: ${{secrets.JFROG_EMAIL}}
+      JFROG_PASSWORD: ${{secrets.JFROG_PASSWORD}}
+      GPR_READ_TOKEN: ${{secrets.GPR_READ_TOKEN}}
+      JFROG_NPM_AUTH_TOKEN: ${{secrets.JFROG_NPM_AUTH_TOKEN}}
+
+  rpm-build:
+    needs: build
+    uses: genesislcap/appdev-workflows/.github/workflows/build-rpm.yml@develop
+    with:
+      product_name: genesis-gks
+      version: ${{ github.ref_name }}
+      artifactory_deploy_locations: product/genesis-gks/rpm/genesis/
+      server-distribution: product/genesis-gks/server/genesis_genesis-gks_package-${{ github.ref_name }}.tar.gz
+      client-distribution: product/genesis-gks/web/genesis-gks-web-${{ github.ref_name }}.zip
+      genesis-user: gks
+    secrets:
+      JFROG_USERNAME: ${{secrets.JFROG_USERNAME}}
+      JFROG_PASSWORD: ${{secrets.JFROG_PASSWORD}}
+
+  jenkins-deploy:
+    needs: [rpm-build]
+    uses: genesislcap/appdev-workflows/.github/workflows/jenkins-deploy.yml@develop
+    with:
+      client: genesis
+      environment: demo-gks1
+      db_backup: false
+      run_clear_codegen_cache: true
+      run_genesis_install: true
+      run_install_hooks: true
+      run_remap: true
+      start_server: true
+      genesis_user: gks
+      environment_level: dev
+      product: genesis-gks
+      package_version: ${{ needs.rpm-build.outputs.rpm_name }}
+    secrets:
+      JENKINS_SECURITYTOKEN: ${{secrets.JENKINS_SECURITYTOKEN}}

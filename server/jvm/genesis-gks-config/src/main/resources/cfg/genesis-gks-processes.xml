@@ -1,0 +1,25 @@
+<!--
+!
+!   System              : Genesis Business Library
+!   Sub-System          : multi-pro-code-test Configuration
+!   Version             : 1.0
+!   Copyright           : (c) Genesis
+!   Date                : 2022-03-18
+!   Function : Provide Process Definitions Config for multi-pro-code-test.
+!
+!   Modification History
+!
+-->
+<processes>
+    <process name="GKS_CRUD">
+        <groupId>GENESIS_GKS</groupId>
+        <start>true</start>
+        <primaryOnly>false</primaryOnly>
+        <options>-DRedirectStreamsToLog=true</options>
+        <module>pal-dataserver,pal-requestserver,pal-eventhandler</module>
+        <package>global.genesis.requestreply.pal,global.genesis.dataserver.pal,global.genesis.eventhandler.pal</package>
+        <script>genesis-gks-dataserver.kts,genesis-gks-eventhandler.kts,genesis-gks-reqrep.kts</script>
+        <loggingLevel>INFO,DATADUMP_OFF</loggingLevel>
+        <language>pal</language>
+    </process>
+</processes>

@@ -1,0 +1,1016 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Genesis Create Instructions</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9bdaab73-2793-499e-96e2-dcdb182226f4" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_space_shuttle_challenger.jpg" style="object-position:center 0%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/hammer_orange.svg"/></div><h1 class="page-title">Genesis Create Instructions</h1><p class="page-description"></p></header><div class="page-body"><nav id="2536b43e-423d-41d2-881f-8520efd6643a" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7b0a76ec-1d65-4a6d-a2bd-41060551ba3e">1. Create</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4181a40c-7678-4902-882b-1c0e0122d908">2. Post-Create and loading into IntelliJ</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#532d0082-1743-4b7a-acf9-be23c8a43360">3. Pro-code Enhancements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d151439b-8e35-4d74-be92-7eb1e39196b2">3.1 Trade Entry pop-up - fixing long vertical layout</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b19864ab-7d8f-42c0-8c5f-baed9969d08c">3.2 Multi-directional Trade Calculations</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#214ca941-64e3-4235-8445-c0a9b329dcb4">3.3 Pivot Positions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e5d1ba73-81c6-451b-8934-89c97b97e95a">3.4 Notifications</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#24a5cc1d-8704-4747-a817-53e616450abb">3.5 Reporting</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cdf5d636-f7e0-460b-81d1-03d7d53902b8">3.6 Fetching BOOK information from reference table and displaying it while creating Trade</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fde94640-d768-4655-8c6b-d7e5e11c16a3">3.7 Instruction for inserting data using CSV (DataPipeline) </a></div></nav><h2 id="7b0a76ec-1d65-4a6d-a2bd-41060551ba3e" class="">1. Create</h2><p id="0b3286f8-73f6-440c-9869-a81a00e9c5c8" class="">The following instructions will give you a step-by-step guide to build the fundamentals of an FX Trading platform using Genesis Create. This application will have the following functionality: </p><ul id="735a8008-3903-419a-9824-bba5b6ea93f8" class="bulleted-list"><li style="list-style-type:disc">Manual trade entry, update and cancel.</li></ul><ul id="22fe9bc7-a768-40e4-9f51-fa9a6a3285b7" class="bulleted-list"><li style="list-style-type:disc">Trade blotter - live trade feed showing version history.</li></ul><ul id="5bacec5f-405d-41f8-85cb-0a462f918f42" class="bulleted-list"><li style="list-style-type:disc">Positions view - show currently fluctuations and newly calculated rates.</li></ul><ul id="6f9fae46-931b-4df3-8ab0-f0baf391f0b8" class="bulleted-list"><li style="list-style-type:disc">Notifications - alert the user on changes to currencies based on totals and thresholds. </li></ul><p id="6fb085da-5b24-412d-bb9c-e37806437bef" class="">
+</p><ol type="1" id="29f5a716-8000-4d78-b73d-78e2a609d24c" class="numbered-list" start="1"><li>Login to <a href="https://create.genesis.global/">https://create.genesis.global/</a> with the userid and password provided in the welcome email. </li></ol><ol type="1" id="61fd85c5-2ab8-416b-9b78-11cfb46449e6" class="numbered-list" start="2"><li>Provide a <strong>valid project name</strong> and project description - we recommend naming the project ‘fx-trading’ but feel free to give it your own custom branding.</li></ol><ol type="1" id="b81d2702-58f7-46ce-b118-e39d961b6922" class="numbered-list" start="3"><li>The next stage will be adding your Genesis components. For now, select the following:<ol type="a" id="1f13d078-3a70-4baf-a069-7e0384578568" class="numbered-list" start="1"><li>Real Time Queries - Dataservers will give us the real time trade feed</li></ol><ol type="a" id="4812285c-872c-4ac1-8ccb-ff286238b2e5" class="numbered-list" start="2"><li>Real Time Aggregation - Consolidators will allow up to work out positions and calculate values based on fluctuating rates</li></ol><ol type="a" id="7884d93d-0bd6-4981-a006-4f29778a1cfd" class="numbered-list" start="3"><li>Notifications </li></ol><ol type="a" id="5d7674ed-78e4-45e8-89f7-4f796d51313b" class="numbered-list" start="4"><li>Reporting</li></ol><p id="4f30c6a2-3f65-40d5-8203-5e7c5df2030b" class="">You can do this by selecting <code>Add Genesis Components</code> , top right</p><figure id="e059014b-649e-4cbb-a63a-6716d76c3eaf" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled.png"><img style="width:220px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled.png"/></a></figure></li></ol><ol type="1" id="45896ca2-cf38-46de-a51e-164ba0d11a0e" class="numbered-list" start="4"><li>Click on Next to take you to the <code>Entity Models</code> page, where you will start to populate entities (tables) and their respective attributes (fields) within your application. </li></ol><ol type="1" id="5146edd5-ab77-4c78-9689-dc56a52066b7" class="numbered-list" start="5"><li>Create the entity by clicking <code>New Entity</code> button, again in the top right and provide <code>TRADE</code> as the Entity Name, and click save. This will provide the base trade fact data for our application.<figure id="fbc0c7f8-de3a-482a-8b91-2ff780ddf90c" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%201.png"><img style="width:162px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%201.png"/></a></figure></li></ol><ol type="1" id="194b67b6-ca9f-4e02-8738-5a1168c5ca50" class="numbered-list" start="6"><li>Check the <code>Generate Audit Trail</code> button. <figure id="4d2f39f6-ea13-4d66-a5ce-229923021254" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%202.png"><img style="width:377px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%202.png"/></a></figure></li></ol><ol type="1" id="2d22cc15-1e66-451a-8223-5e9ba6dcc8ea" class="numbered-list" start="7"><li>We can start adding attributes you’ll need to use the <code>New Attributes</code> screen on the right hand side. To start, we’ll only need to update the <code>Name</code> ,<code>Type</code> and <code>Allow Null Values</code> fields for most attributes. For the <code>ENUM</code> type attributes, you’ll also have to provide some values, of which the first in the list can be set to the <code>Default Value</code>.<figure id="419f6715-b4c4-49d2-8752-755ae1356795" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%203.png"><img style="width:548px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%203.png"/></a></figure><table id="d47fcf97-657b-4a5c-b967-177de7b6e1b7" class="simple-table"><thead class="simple-table-header"><tr id="ae54dc84-73c1-402b-9d3d-2e82d2632232"><th id="CyZk" class="simple-table-header-color simple-table-header" style="width:159.3125px">Field Name</th><th id="ySEJ" class="simple-table-header-color simple-table-header">Type</th><th id="FuyT" class="simple-table-header-color simple-table-header">Allow Null Values?</th><th id="h}tv" class="simple-table-header-color simple-table-header">Value</th></tr></thead><tbody><tr id="4c4bc23d-179a-4a98-b9f8-6c5af33051e2"><td id="CyZk" class="" style="width:159.3125px">TRADE_ID</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr><tr id="1d7e104c-26a6-4f55-90c9-7b8c8128f926"><td id="CyZk" class="" style="width:159.3125px">TRADE_DATETIME</td><td id="ySEJ" class=""><code>datetime</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr><tr id="96d14c32-37c4-4dba-92ea-ec057701ec21"><td id="CyZk" class="" style="width:159.3125px">TRADE_STATUS</td><td id="ySEJ" class=""><code>enum</code></td><td id="FuyT" class=""></td><td id="h}tv" class="">New, Amended, Cancelled</td></tr><tr id="59e3def3-af7b-49e6-8fc6-d4030c846470"><td id="CyZk" class="" style="width:159.3125px">TRADER_NAME</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class="">Y</td><td id="h}tv" class=""></td></tr><tr id="90eaa7a9-3a8d-4736-a58f-ec443e2180d1"><td id="CyZk" class="" style="width:159.3125px">SALES_NAME</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class="">Y</td><td id="h}tv" class=""></td></tr><tr id="f5b45ae9-5233-4037-adf0-5ec6551a78b9"><td id="CyZk" class="" style="width:159.3125px">BROKER_CODE</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class="">Y</td><td id="h}tv" class=""></td></tr><tr id="9a4cca7d-d514-48cc-9113-676e4d517bef"><td id="CyZk" class="" style="width:159.3125px">ENTITY</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class="">Y</td><td id="h}tv" class=""></td></tr><tr id="73d73aab-78dd-44a9-90ee-5ae2f29dd6c0"><td id="CyZk" class="" style="width:159.3125px">BOOK</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class="">Y</td><td id="h}tv" class=""></td></tr><tr id="f66a8dad-6d94-4007-9e4a-32a8d99e0cb7"><td id="CyZk" class="" style="width:159.3125px">CLIENT_NAME</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class="">Y</td><td id="h}tv" class=""></td></tr><tr id="cdae23df-adb9-49c0-9767-520f3cdd75ef"><td id="CyZk" class="" style="width:159.3125px">SOURCE_CURRENCY</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr><tr id="a6800a6e-5f23-4dcc-9157-3c4d01a34ccb"><td id="CyZk" class="" style="width:159.3125px">TARGET_CURRENCY</td><td id="ySEJ" class=""><code>string</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr><tr id="a3b4bfa2-18bb-4b09-8883-2e208a0b281f"><td id="CyZk" class="" style="width:159.3125px">SETTLEMENT_DATE</td><td id="ySEJ" class=""><code>date</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr><tr id="e0b02478-c45c-4626-a134-9149ec196166"><td id="CyZk" class="" style="width:159.3125px">NOTIONAL</td><td id="ySEJ" class=""><code>double</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr><tr id="245c4409-3d01-4392-a74c-77659306942c"><td id="CyZk" class="" style="width:159.3125px">SIDE</td><td id="ySEJ" class=""><code>enum</code></td><td id="FuyT" class=""></td><td id="h}tv" class="">BUY, SELL</td></tr><tr id="6620bc55-b08c-4205-a544-50bdb10de3c7"><td id="CyZk" class="" style="width:159.3125px">RATE</td><td id="ySEJ" class=""><code>double</code></td><td id="FuyT" class=""></td><td id="h}tv" class=""></td></tr></tbody></table></li></ol><ol type="1" id="765137b3-06a8-43f9-a657-e856ed008bf2" class="numbered-list" start="8"><li>Once you have added all these attributes, we’ll want to set <code>TRADE_ID</code> to be the Primary Key field. We’ll also want to make sure this value is a generated attribute, and the sequence is set to <code>TR</code>. This means that <code>TRADE_ID</code> field will auto generate values for us.<br/><br/><figure id="044d703f-57f8-45a3-96cd-99afed015973" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%204.png"><img style="width:864px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%204.png"/></a></figure><p id="f0e628d7-2508-49ef-ae25-5f47080c8fa5" class="">
+</p><p id="50b9db44-4994-48e5-9f69-2464441816ad" class="">
+</p></li></ol><ol type="1" id="c6cf2ee0-4d38-40eb-bdbf-5267221f6fdc" class="numbered-list" start="9"><li>Repeat steps 5-8, but for the following two tables:<br/><br/><code>EXCHANGE_RATES</code> (keep track of exchange rate data)<table id="aa19be2d-d266-4b69-8633-e42cf1736710" class="simple-table"><thead class="simple-table-header"><tr id="2d495fca-54de-4e27-bfc2-b48013622a31"><th id="^xYa" class="simple-table-header-color simple-table-header">Field Name</th><th id="ASSe" class="simple-table-header-color simple-table-header">Type</th><th id="ZC\w" class="simple-table-header-color simple-table-header">Allow Null Values?</th><th id="&gt;pKs" class="simple-table-header-color simple-table-header">Primary Key?</th><th id="wXCQ" class="simple-table-header-color simple-table-header" style="width:171px">Value</th></tr></thead><tbody><tr id="2e96fe3b-bc75-4c7e-a45a-ede0c6c43f94"><td id="^xYa" class="">SOURCE_CURRENCY</td><td id="ASSe" class=""><code>string</code></td><td id="ZC\w" class=""></td><td id="&gt;pKs" class="">Y</td><td id="wXCQ" class="" style="width:171px"></td></tr><tr id="3af88776-7fc4-4749-aa82-45ba1cc2c34a"><td id="^xYa" class="">TARGET_CURRENCY</td><td id="ASSe" class=""><code>string</code></td><td id="ZC\w" class=""></td><td id="&gt;pKs" class="">Y</td><td id="wXCQ" class="" style="width:171px"></td></tr><tr id="66b80bad-7ea6-4cfd-b8c1-88e07d4310c6"><td id="^xYa" class="">RATE_DATE</td><td id="ASSe" class=""><code>date</code></td><td id="ZC\w" class=""></td><td id="&gt;pKs" class="">Y</td><td id="wXCQ" class="" style="width:171px"></td></tr><tr id="5ea73f0c-8de3-4b36-b2a7-cedaa05911c4"><td id="^xYa" class="">RATE</td><td id="ASSe" class=""><code>double</code></td><td id="ZC\w" class=""></td><td id="&gt;pKs" class=""></td><td id="wXCQ" class="" style="width:171px"></td></tr></tbody></table><p id="06dba96a-5528-40f9-88b3-3bdacef5a113" class=""><code>POSITION</code>  (fed by the consolidator, a calculated table to keep track of positions)</p><table id="a47edc4f-9f8f-4608-8bc6-a3310fadac71" class="simple-table"><thead class="simple-table-header"><tr id="8a7c6572-f1da-466f-8988-81f07420ef2f"><th id="qob;" class="simple-table-header-color simple-table-header" style="width:142px">Field Name</th><th id="rOf}" class="simple-table-header-color simple-table-header">Type</th><th id="z^{|" class="simple-table-header-color simple-table-header">Allow Null Values?</th><th id="O\uo" class="simple-table-header-color simple-table-header">Primary Key?</th><th id="mRDc" class="simple-table-header-color simple-table-header" style="width:183px">Value</th></tr></thead><tbody><tr id="3d4bae28-3b66-4db3-9ddf-27c5c0bbdb57"><td id="qob;" class="" style="width:142px">SOURCE_CURRENCY</td><td id="rOf}" class=""><code>STRING</code></td><td id="z^{|" class=""></td><td id="O\uo" class="">Y</td><td id="mRDc" class="" style="width:183px"></td></tr><tr id="387b1c6b-7dd9-4c7c-8ec6-40de132008ca"><td id="qob;" class="" style="width:142px">TARGET_CURRENCY</td><td id="rOf}" class=""><code>string</code></td><td id="z^{|" class=""></td><td id="O\uo" class=""></td><td id="mRDc" class="" style="width:183px"></td></tr><tr id="cc2c31d3-a7ea-48e9-b536-c265711498d2"><td id="qob;" class="" style="width:142px">SETTLEMENT_DATE</td><td id="rOf}" class=""><code>date</code></td><td id="z^{|" class=""></td><td id="O\uo" class="">Y</td><td id="mRDc" class="" style="width:183px"></td></tr><tr id="9660eb56-14f8-4545-9857-34af2279811a"><td id="qob;" class="" style="width:142px">AMOUNT</td><td id="rOf}" class=""><code>double</code></td><td id="z^{|" class=""></td><td id="O\uo" class=""></td><td id="mRDc" class="" style="width:183px"></td></tr></tbody></table></li></ol><ol type="1" id="a7b54ebd-b85b-461b-8fd9-6dff83fcc6b2" class="numbered-list" start="10"><li>Go Back to All Entities page by clicking button at top <figure id="1cb8a7ed-3d2d-4986-b5ab-3a4137d8c29d" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%205.png"><img style="width:687px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%205.png"/></a></figure></li></ol><ol type="1" id="1435c72b-23cc-4883-934d-fad840cc12f1" class="numbered-list" start="11"><li>Repeat these steps until all of the entities are added to the project</li></ol><ol type="1" id="e74d6cbe-1605-4234-b745-9d4d3313c18d" class="numbered-list" start="12"><li>We’ll skip the views section for now. Please hit Next and move on to Queries.</li></ol><ol type="1" id="11e9b964-3229-4e96-88d3-096c5dc52d15" class="numbered-list" start="13"><li><mark class="highlight-orange">(OPTIONAL)</mark> - Click on <code>New Query</code> to configure real time dataserver that will stream the data from the entities and views. Select <code>Entity or View</code> from dropdown and provides query name, followed by clicking <code>Add Query</code> button. You can decide to include or not include the fields that you wants to include. After that click on <code>Back to Queries</code> button to go back to Query page. </li></ol><ol type="1" id="75f9bf9c-bdc9-4232-9f6b-4a5897d5708c" class="numbered-list" start="14"><li><mark class="highlight-orange">(OPTIONAL)</mark> - Repeat the previous step to add Additional Queries if you wish. Click on <code>Next</code> to move onto define further components. </li></ol><ol type="1" id="c1f7d184-0e0f-4981-921d-4e5ff49df376" class="numbered-list" start="15"><li>Next we’ll be defining a consolidator to calculate the position by currency. </li></ol><ol type="1" id="7573abe9-7afb-4a7d-94d4-bdf0f620b087" class="numbered-list" start="16"><li>Provide the <code>Consolidator Name</code>  , <code>Input Entity</code> and <code>Output Entity</code> , Define the <code>Group By</code> and respective <code>Input Field</code> —&gt;  <code>Aggregated Method</code> —&gt; <code>Output field</code> .<ol type="a" id="b540e1c2-bfa5-45a6-9767-cdc137c9135f" class="numbered-list" start="1"><li>Name: POSITION_CALC</li></ol><ol type="a" id="96482cea-100d-4019-89e4-9701ab35f36b" class="numbered-list" start="2"><li>Input Entity: TRADE</li></ol><ol type="a" id="daa0597f-b37e-41d2-8cd1-ece4a9e4a1bf" class="numbered-list" start="3"><li>Output Entity: POSITION</li></ol><ol type="a" id="d6945f7c-4f7d-4b52-83d4-395125a78ef4" class="numbered-list" start="4"><li>Group By Clause should Group By <code>SETTLEMENT_DATE</code> and <code>SOURCE_CURRENCY</code></li></ol><ol type="a" id="ede62703-7be8-4e48-bb3d-102edbf43c28" class="numbered-list" start="5"><li>Select the following aggregation function which should be defined for you</li></ol><figure id="9853f3bb-c880-4ac4-86b8-882729298633" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%206.png"><img style="width:619px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%206.png"/></a></figure></li></ol><ol type="1" id="37d6d8af-4c55-4654-ac17-367c46dc22e4" class="numbered-list" start="17"><li><mark class="highlight-orange">(OPTIONAL)</mark> - Repeat the pervious step if you wish to create any more consolidators, for example you could add consolidation logic of exchange rate change. Once complete, click <code>Next</code> to define user interface. </li></ol><ol type="1" id="428d5013-092b-4675-af36-3c419a71958d" class="numbered-list" start="18"><li>Click <code>Next</code> to move past the business components section - we’ll come back later to configure these components! </li></ol><ol type="1" id="90125071-a3d5-41ac-a5ee-711c38829feb" class="numbered-list" start="19"><li>Depending on your user interface needs, you can add one of more pages either by clicking <code>+</code> button next to <code>HOME</code> or Click on <code>*</code> icon near Manage Pages. Here, we’ll ask you to create a basic front end - this will allow you to keep track of your trades, being able to book new trades, amend or cancel and a positions view to see book consolidation in real time. <ol type="a" id="903fe992-27a1-4738-b31c-051fa07da21c" class="numbered-list" start="1"><li>First, let’s create the trade blotter. You can rename ‘HOME’ to ‘Blotter’ in the Manage Pages config. </li></ol><ol type="a" id="8bdec76c-f89b-4b4f-a675-d1386c566a26" class="numbered-list" start="2"><li>Add a tile ‘Trade Blotter’ - <code>Real-Time Data Grid + Data Modifications</code>. This gives you the real time dataserver element but also the ability to create new trades and amend existing trades. This will create necessary events in the back end event handlers.</li></ol><ol type="a" id="1772047f-1d82-4ce5-9863-23e1687c8b0c" class="numbered-list" start="3"><li>Set the data source to be <code>TRADE</code></li></ol><ol type="a" id="1c54e1a9-4ae4-4ed6-b9bb-f8c3da94b6a6" class="numbered-list" start="4"><li>Ensure the allowed actions are ‘Insert’, ‘Update’ and ‘Delete’ to generate that code</li></ol><ol type="a" id="1933ba15-746e-4605-8109-b854699d1b9f" class="numbered-list" start="5"><li>Now we’ll need to define the table structure. TRADE_ID is generated by the system, so hide that, but feel free to play with all the other fields and set data types. </li></ol><ol type="a" id="32cc6b43-f442-439d-a755-57c13f8a4ad4" class="numbered-list" start="6"><li>Add a new tile ‘Positions’ - this will just be a read only grid, reading from the positions table that is being updated automatically by the consolidator</li></ol><ol type="a" id="65237f43-2879-487c-beaa-d0176b666e66" class="numbered-list" start="7"><li>Datasource will be <code>POSITION</code></li></ol><ol type="a" id="bb3245d3-fc6d-4c41-b9b6-d9c94aa0ca70" class="numbered-list" start="8"><li>We’ll tidy this table up in pro-code so it provides the more well known ‘pivot’ look and feel of a positions ladder.</li></ol><ol type="a" id="7e231647-c6e6-4533-935d-d4f214c4dfd6" class="numbered-list" start="9"><li>Finally, you should add the <code>EXCHANGE_RATE</code> table similar to the Trade Blotter (<code>Real-Time Data Grid + Data Modifications</code>) so you’re able to add/update rate data</li></ol></li></ol><ol type="1" id="97027317-29a6-4d43-ac89-b26bee3744a4" class="numbered-list" start="20"><li>Click next to download the project by clicking on <code>Generate Project</code> </li></ol><ol type="1" id="e0d7d4f9-a01c-40c4-92b7-80656a9a58eb" class="numbered-list" start="21"><li>Extract the zip file and open in Intellij - there is a video embedded in the final step of Genesis Create which demonstrates this process, but we recommend looking through the section 2, <strong>Post-Create and loading into Intellij,</strong> to get you up and running and make sure your local development environment is correctly configured. </li></ol><p id="7bc3cd6c-661e-42c7-8eb2-87d5fcbff60a" class="">
+</p><p id="5db53c33-bc3f-4f96-b9e5-be502cbd3996" class="">At the end of day one, you should have the basis of an FX platform generated from Genesis Create with a number of core Genesis components:</p><ul id="8d8d05c3-3844-4329-837b-d6221fcb16dc" class="bulleted-list"><li style="list-style-type:disc">Authentication and authorisation - have the ability to add field level permissions, create users, rights and profiles</li></ul><ul id="a192efad-e35b-4f0f-b173-6b539660fc40" class="bulleted-list"><li style="list-style-type:disc">Dataservers - have a live feed of trade data as users create new and amend existing trades</li></ul><ul id="c0ab79b4-2156-4d87-9f14-bfb9e95a5705" class="bulleted-list"><li style="list-style-type:disc">Events - basic CRUD events added for each entity created. This will be where you’ll start your ‘pro-code’ experience and build application logic, connectors and API integrations</li></ul><ul id="d1ce3b9a-85b0-4c07-bcb5-8d56e43832ca" class="bulleted-list"><li style="list-style-type:disc">Consolidators - the backbone behind data manipulation in Genesis. Listen to table updates and run real time calculations</li></ul><p id="fb7c4c58-566e-45cd-8563-18fd6d6182e9" class="">and have a seed project to continue your build. You will also have deployed the project locally, learning more about:</p><ul id="8187aaab-0f60-4f36-95b6-b4f054cf9123" class="bulleted-list"><li style="list-style-type:disc">The Genesis plugin - build, deploy and run applications on your local machine</li></ul><ul id="892b0b92-daea-4bde-a156-c0c1ec9b28a8" class="bulleted-list"><li style="list-style-type:disc">Genesis tooling - deploy data to your local database and query directly</li></ul><ul id="ec841be1-4b38-485a-aadd-0a96e36173c5" class="bulleted-list"><li style="list-style-type:disc">Intellisense - experience how integrations with Intellij and the Genesis DSL, GPAL, autocompletes and aids your Genesis development</li></ul><p id="568babc0-6b45-4424-bf19-304f2f397f18" class="">
+</p><p id="8415388a-95ca-4989-95e2-424fe84bbc7f" class=""> Once you’ve opened the app in Intellij and running in your development environment, we recommend transitioning to the <a href="https://genesis-academy.workramp.io/trainings">Genesis Academy</a> (Day 2), where you’ll learn about components and the Genesis stack to a point where you can return to the application and build enhancements to finalise the FX trading platform. </p><p id="e314f6c0-6128-4a22-bb23-a0ebd75a8c61" class="">
+</p><p id="7ee1a207-6e2d-42d6-b3b4-732831c02da9" class="">On completion of the Academy training, come back and visit section 3, <strong>Pro-code Enhancements,</strong> to run through how to begin working directly with the platform and build world class financial applications. </p><p id="3857158f-4104-4cd0-a9c5-34c7b4b49afb" class="">
+</p><p id="8c5c8ee1-0a93-438a-a2b8-53d3d943ccac" class="">
+</p><h2 id="4181a40c-7678-4902-882b-1c0e0122d908" class="">2. Post-Create and loading into IntelliJ</h2><p id="d5997d36-7d85-448d-b1dd-0c6614a492c8" class="">Some important points on install:<div class="indented"><ul id="337cceca-793e-40e7-9666-a3a0a5f2ae6b" class="bulleted-list"><li style="list-style-type:disc">Please make sure you open the project at the root in Intellij. The Genesis plugin may not detect your Genesis project if you open from an external a folder (i.e. you unzip and then open <code>fx-trading/fx-trading</code>) </li></ul><ul id="f5405bc8-a0d1-4b66-b446-7dacf74ccf2e" class="bulleted-list"><li style="list-style-type:disc">Make sure your SDK is set up in IntelliJ - go to <code>File</code> —&gt; <code>Project Structure</code> —&gt; <code>Project</code> and make sure your <strong>Java version is set to 17</strong></li></ul><ul id="40c66973-5f6b-4074-b129-0530d915d680" class="bulleted-list"><li style="list-style-type:disc"><strong>Make sure Gradle is using the same SDK - go to </strong><strong><code>File</code></strong><strong> —&gt; </strong><strong><code>Settings</code></strong><strong> and search for </strong><strong><code>Gradle</code></strong><strong>. Under </strong><strong><code>Build, Execution, Deployment</code></strong><strong>, open </strong><strong><code>Gradle</code></strong><strong> and select the </strong><strong><code>Gradle JVM</code></strong><strong> to be the Project SDK (17) </strong></li></ul><ul id="6a9b041c-23a5-4d2d-850d-62a47d29d7c1" class="bulleted-list"><li style="list-style-type:disc">When prompted, please click <code>Load Gradle Project</code> in the bottom right of your Intellij window. Please ensure the SDK is set to Java 17 before running this step. if you’ve loaded the project with the wrong SDK, you’ll need to restart Intellij and may experience crashes</li></ul><ul id="916c1e5e-152d-447c-a9c1-c293e40cb869" class="bulleted-list"><li style="list-style-type:disc">When running the project, if you see a pop up in the bottom right asking if you’d like to <code>Use Services</code>, it is worth clicking ‘Yes’ for a better UX when running your application.</li></ul><figure id="c0bee2af-7f29-4f99-a511-ffc27487cfc0" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%207.png"><img style="width:358px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%207.png"/></a></figure><ul id="ac334b2a-876c-41da-b2ed-22295fbe9eb2" class="bulleted-list"><li style="list-style-type:disc">Once the project is open, and recognised by the Genesis plugin, you can then start running Gradle tasks to build and start you application. To simplify the sequence, run the following (you can learn more about these steps during Genesis Academy and our training documentation):<ul id="ecae95a7-0c8b-4902-88ef-2df178142792" class="bulleted-list"><li style="list-style-type:circle"><code>prepare local enviornment</code> - click on prepare local environment to generate all configuration files. </li></ul><ul id="833e93e5-e2c4-41d3-bca8-56e24e9540fd" class="bulleted-list"><li style="list-style-type:circle"><code>remap</code> - executed from <code>Mon</code> section of the plugin. This also runs <code>genesisInstall</code> and gives you the option to import data!</li></ul><figure id="ef74a9ad-8956-48cb-a945-8b635712140e" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%208.png"><img style="width:348px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%208.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ecabd36d-cc8a-42b0-a4ed-4dfceea98e32"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Note, make sure you say yes to importing the data! this process will loop through all the ‘data’ folders in your project and import crucial user, rights and profile data. Check out more information in our documents are via the Academy</div></figure><ul id="2c44a440-13f0-44df-ac4f-f869cd50c346" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-orange">OPTIONAL </mark>- If you want to add a new user for yourself, you can update <code>USER.csv</code> here: <code>fx-tradingserver\fx-trading-app\src\main\genesis\data\USER.csv</code><p id="4eaed46a-f534-493e-b377-84139fc148c5" class="">The password is a concatenation of your username and your password, then sha512 encrypted</p><p id="0367469a-600d-4f3b-a9cf-8f502a5529ed" class="">Right click the csv from the project plane and select <code>Import CSV(s) to Genesis</code></p></li></ul><ul id="42116a91-bc55-4873-b271-1436448acd5d" class="bulleted-list"><li style="list-style-type:circle">Once you’ve started the GUI, you’ll be able to log using User / Pass: <code>admin</code> / <code>genesis</code></li></ul><ul id="6fc998d6-1b48-4575-a742-7cebc53d00a8" class="bulleted-list"><li style="list-style-type:circle">If you want to add/remove/amend a field and/or a table definition, make sure you run your <code>genesisInstall</code> to ‘deploy’ the change to the environment before running a remap</li></ul></li></ul><ul id="4b5bbf68-3bdb-4ce7-9f00-cfac24db4366" class="bulleted-list"><li style="list-style-type:disc">When opening a GPAL file for the first time, make sure you click ‘Enable auto-reload’ to make the most of Genesis’ intellisence. You may need to close and re-open IntelliJ if this is not appearing<figure id="88b7a38b-9f91-4c13-80dc-edbd6d06596a" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%209.png"><img style="width:592px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%209.png"/></a></figure></li></ul><p id="57f8f9ae-f126-48a0-8108-584d35d017d4" class="">
+</p></div></p><p id="45d7b828-74b7-4731-b164-3c98d787167c" class="">Now it’s time to start your application!</p><ul id="914a04d2-b37a-45dd-925e-989fe57a6fc9" class="bulleted-list"><li style="list-style-type:disc">First you’ll want to make sure you application builds - go to the Gradle plugin on the right hand side of your intellij window, open up the root node and hit assemble:<figure id="8a7887d8-c66f-4cd2-b7b9-485aca85b14f" class="image" style="text-align:left"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2010.png"><img style="width:353px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2010.png"/></a></figure></li></ul><ul id="0ffdfe0b-331c-472c-ac71-575b2deccef5" class="bulleted-list"><li style="list-style-type:disc">If you get any errors at this point, attempt to debug yourself but feel free to contact <a href="http://dev.support">dev.support</a> to guide you through.</li></ul><ul id="49cec892-dfc1-4242-9a8d-296f5c6fc677" class="bulleted-list"><li style="list-style-type:disc">Now, under within the Genesis plugin, click start - this will bring up all the backend services<figure id="bb859bd4-c67f-42e4-8c61-0ddea64591bb" class="image" style="text-align:left"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2011.png"><img style="width:354px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2011.png"/></a></figure></li></ul><ul id="0bad31b4-1741-4133-a903-5964024dc69e" class="bulleted-list"><li style="list-style-type:disc">Once they are marked as <code>HEALTHY</code>, start the UI - this will launch the application in your local browser. you can log in using the the users mentioned <a href="https://www.notion.so/Genesis-Create-Instructions-9bdaab732793499e96e2dcdb182226f4?pvs=21">previously</a><figure id="27b83e44-fa59-4066-9303-a177df0bab2d" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2012.png"><img style="width:30px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2012.png"/></a></figure></li></ul><p id="94d485ce-566a-4857-b27e-8e48bd74ee57" class="">
+</p><p id="dd6c6da8-c9ac-4dd9-b402-4d8f6fb25ba3" class=""><div class="indented"><p id="3fc4310f-08b3-445d-bde1-d6f356374b9f" class="">
+</p></div></p><h2 id="532d0082-1743-4b7a-acf9-be23c8a43360" class="">3. Pro-code Enhancements</h2><p id="101c462e-0c22-402a-9307-6a5eea9976a9" class="">There are few things we’ll need in ‘pro-code’ to do to make the app a fully functional trading view.</p><h3 id="d151439b-8e35-4d74-be92-7eb1e39196b2" class="">3.1 Trade Entry pop-up - fixing long vertical layout</h3><p id="dc22a718-6038-450b-b3fb-6a0e14f347ff" class="">You may have noticed when using your application, some of the Trade Entry pop ups can be difficult to use (especially with small screens) as the data is displayed in a single column in a vertical layout.<br/>We’ll try to fix this by updating the template so it splits the fields into 2 columns, which should make the Trade Insert and Trade Modify pop ups easier to use in your application..<br/><br/></p><p id="9c4c67ee-a64e-4341-8c28-2d1ebfa87c81" class="">Within <code>fx-trading/client/src/routes/blotter/</code>, update the<code>blotter.template.ts</code> file, replacing any instances (likely 2) where the <code>&quot;type&quot;: &quot;VerticalLayout&quot;</code>, with:<br/><br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13303200-d2de-4ef6-b5f8-55e1acac04ab" class="code"><code class="language-Bash">&quot;type&quot;: &quot;LayoutVertical2Columns&quot;</code></pre><p id="ad058f20-afc4-466f-9728-e7e4530dc7c0" class="">If replacing the whole line - make sure to keep the comma at the end of this line.</p><h3 id="b19864ab-7d8f-42c0-8c5f-baed9969d08c" class="">3.2 Multi-directional Trade Calculations</h3><p id="95391467-b216-4992-b918-1b0865ed5713" class="">Update the <code>TRADE_INSERT</code> event handler in your <code>fx-trading-eventhandler.kts</code> file so that it will insert two records into database. One on the <code>SELL</code> side and other one to <code>BUY</code> side. This will ensure the proper calculation for the <code>Position</code>. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="711461b6-4730-4dd3-8995-e3cb520c0f1a" class="code"><code class="language-Kotlin">eventHandler&lt;global.genesis.gen.dao.Trade&gt;(&quot;TRADE_INSERT&quot;) {
+    onCommit { event -&gt;
+      var details = event.details
+      LOG.info(&quot;original trade {}&quot;, details)
+      var otherSide: Trade = details.copy()
+      otherSide.targetCurrency = details.sourceCurrency
+      otherSide.sourceCurrency = details.targetCurrency
+      if(details.side == Side.BUY){
+        otherSide.side = Side.SELL
+        otherSide.notional = - details.notional
+      }else{
+        otherSide.side = Side.BUY
+        details.notional = - details.notional
+      }
+      LOG.info(&quot;original trade after assignment {}&quot;, details)
+      LOG.info(&quot;other side trade after assignment {}&quot;, otherSide)
+      val firstLeg = entityDb.insert(details)
+      val secondLeg = entityDb.insert(otherSide)
+      // return an ack response which contains a list of record IDs
+      ack(listOf(mapOf(
+        &quot;TRADE_ID&quot; to firstLeg.record.tradeId,
+        &quot;TRADE_ID&quot; to secondLeg.record.tradeId,
+      )))
+    }
+  }</code></pre><h3 id="214ca941-64e3-4235-8445-c0a9b329dcb4" class="">3.3 Pivot Positions</h3><p id="e5892bca-7d03-4b52-9c34-d1f66391839a" class="">Let’s create a consolidated view of your FX trades. To do this, we need to create a new custom element and replace the existing grid pro. This new element will subscribe to a stream from the consolidator output table and transform the output.</p><p id="093fa40e-f1c0-49fa-a73f-53702a884d96" class="">
+</p><p id="913870a0-7214-4c5e-b07e-014258845a7d" class="">First update your <code>fx-trading-dataserver.kts</code> file and add a query called ALL_POSITIONS which will stream updates from the positions table.</p><p id="a2ccfc8f-7d7f-49c8-a23f-91cdfa3b8fa2" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8b527a16-b0f7-4937-bd64-ba0a311bbf96" class="code"><code class="language-JavaScript">
+dataServer {
+
+  query(&quot;ALL_POSITIONS&quot;, POSITION)
+  ...
+}</code></pre><p id="927429c1-e6a3-4bfe-a47b-fa616ef44736" class="">
+</p><p id="963aefbd-da31-4c7d-a426-669bc280099d" class="">Next create your new custom element in a new file - <code>client/src/components/positions-grid.ts</code>.  This class will subscribe to the new ALL_POSITIONS stream. It will transform the array and group trades by date and create an aggregate daily amount for each currency. It will also dynamically update the column definitions on the grid so that there is a column for each currency.</p><p id="4f235cfc-93c5-4c6d-b553-c1e42ac14984" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ab54e747-cf97-472e-b58c-a6ca0320cd0a" class="code"><code class="language-JavaScript">import { customElement, FASTElement, html, ref } from &#x27;@microsoft/fast-element&#x27;;
+import { Connect } from &#x27;@genesislcap/foundation-comms&#x27;;
+import { GridPro } from &#x27;@genesislcap/foundation-zero-grid-pro&#x27;;
+import { getDateFormatter, getNumberFormatter } from &#x27;../utils&#x27;;
+
+@customElement({
+  name: &#x27;positions-grid&#x27;,
+  template: html&lt;PositionsGrid&gt;`
+    &lt;zero-grid-pro
+      ${ref(&#x27;grid&#x27;)}
+      @onGridReady=&quot;${(x, e) =&gt; x.onGridReady(e)}&quot;
+    &gt;
+    &lt;/zero-grid-pro&gt;
+  `
+})
+export class PositionsGrid extends FASTElement {
+
+  @Connect connect!: Connect;
+
+  grid: GridPro;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.grid.gridOptions = {};
+  }
+
+  onGridReady(e): void {
+    this.connect.stream(&#x27;ALL_POSITIONS&#x27;, async () =&gt; {
+      const rows = await this.getPositionsData();
+      const currencies = this.getAllCurrenciesFromStream(rows);
+      const colDefs = this.createColDefs(rows, currencies);
+      const rowData = this.mapRowData(rows, currencies)
+      this.grid.gridApi.setColumnDefs(colDefs);
+      this.grid.gridApi.setRowData(rowData)
+    }, console.error);
+  }
+
+  async getPositionsData() {
+    const message = await this.connect.request(&#x27;POSITIONS&#x27;)
+    return message?.REPLY;
+  }
+
+  private mapRowData(message: any[], currencies: string[]): any[] {
+    if (!message) {
+      return [];
+    }
+
+    const rowMap: { [key: string] : any } = message.reduce((acc, row) =&gt; {
+
+      const { SETTLEMENT_DATE, AMOUNT, SOURCE_CURRENCY } = row;
+
+      if (!acc[SETTLEMENT_DATE]) {
+        acc[SETTLEMENT_DATE] = {
+          settlementDate: SETTLEMENT_DATE,
+          [SOURCE_CURRENCY]: AMOUNT
+        }
+      } else {
+        const existingValue = acc[SETTLEMENT_DATE][SOURCE_CURRENCY] !== undefined ? acc[SETTLEMENT_DATE][SOURCE_CURRENCY] : 0;
+        acc[SETTLEMENT_DATE][SOURCE_CURRENCY] = existingValue + AMOUNT
+      }
+
+      return acc;
+
+    }, {});
+
+    return Object.keys(rowMap).map(key =&gt; rowMap[key]).sort((a,b) =&gt; a.settlementDate &gt; b.settlementDate ? 1 : -1);
+  }
+
+  private getAllCurrenciesFromStream(message: any[]): string[] {
+
+    if (!message) {
+      return [];
+    }
+
+    return message.reduce((currencies: string[], row) =&gt; {
+      const { SOURCE_CURRENCY } = row;
+      if (!currencies.includes(SOURCE_CURRENCY)) {
+        currencies.push(SOURCE_CURRENCY)
+      }
+
+      return currencies;
+    }, []);
+  }
+
+  private createColDefs(message: any[], currencies: string[]) {
+
+    const colDefs: any[] = [
+      {
+        field: &quot;settlementDate&quot;,
+        headerName: &quot;Settlement Date&quot;,
+        hide: false,
+        valueFormatter: getDateFormatter(&quot;en-GB&quot;, {
+          year: &#x27;numeric&#x27;,
+          month: &#x27;long&#x27;,
+          day: &#x27;numeric&#x27;,
+        })
+      }
+    ]
+
+    if (!message || message.length) {
+      currencies.forEach(c =&gt; {
+        colDefs.push({
+          field: c,
+          headerName: c,
+          hide: false,
+          valueFormatter: getNumberFormatter(&quot;0,0.00&quot;, null)
+        })
+      });
+
+      return colDefs;
+    }
+
+  }
+}
+</code></pre><p id="7c1ad9c3-17e3-4676-abe6-b713f7e8d1f1" class="">
+</p><p id="c587ba22-61b6-4206-ac61-5e07d048e5be" class="">Next, add your new custom element to the <code>client/src/components/components.ts</code> file so the browser knows how to render it.</p><p id="004b38eb-e620-4aed-95b8-dfa065dc05ba" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7fe0c0f1-6db6-40e7-9c7f-263a6674a508" class="code"><code class="language-JavaScript">import { EntityManagement } from &#x27;@genesislcap/foundation-entity-management&#x27;;
+import { Form } from &#x27;@genesislcap/foundation-forms&#x27;;
+import { Navigation } from &#x27;@genesislcap/foundation-header&#x27;;
+import { foundationLayoutComponents } from &#x27;@genesislcap/foundation-layout&#x27;;
+import { getApp } from &#x27;@genesislcap/foundation-shell/app&#x27;;
+import { FoundationRouter } from &#x27;@genesislcap/foundation-ui&#x27;;
+import {
+  assureDesignSystem,
+  DesignSystemModule,
+  ResourceType,
+} from &#x27;@genesislcap/foundation-utils&#x27;;
+import { zeroGridComponents } from &#x27;@genesislcap/foundation-zero-grid-pro&#x27;;
+import { g2plotChartsComponents } from &#x27;@genesislcap/g2plot-chart&#x27;;
+import { logger } from &#x27;../utils&#x27;;
+import { PositionsGrid } from &#x27;./positions-grid&#x27;;
+
+/**
+ * Ensure tree shaking doesn&#x27;t remove these.
+ */
+FoundationRouter;
+Navigation;
+EntityManagement;
+Form;
+PositionsGrid; // IMPORTANT - YOUR NEW ELEMENT
+
+/**
+ * zeroDesignSystemImport.
+ * @remarks
+ * Attempts to use a module federation version of zero before falling back to the version that was bundled with the app.
+ * @internal
+ */
+async function zeroDesignSystemImport(): Promise&lt;DesignSystemModule&gt; {
+  let module: DesignSystemModule;
+  let type: ResourceType = ResourceType.remote;
+  try {
+    module = await import(
+      /* webpackChunkName: &quot;foundation-zero&quot; */
+      &#x27;foundationZero/ZeroDesignSystem&#x27;
+    );
+    return assureDesignSystem(module);
+  } catch (e) {
+    logger.info(
+      `Please note remoteEntry.js load errors are expected if module federated dependencies are offline. Falling back to locally bundled versions.`,
+    );
+    type = ResourceType.local;
+    module = await import(
+      /* webpackChunkName: &quot;foundation-zero&quot; */
+      &#x27;@genesislcap/foundation-zero&#x27;
+    );
+    return assureDesignSystem(module);
+  } finally {
+    logger.debug(`Using &#x27;${type}&#x27; version of foundation-zero`);
+  }
+}
+
+/**
+ * registerComponents.
+ * @public
+ */
+export async function registerComponents() {
+  const designSystem = await zeroDesignSystemImport();
+  const { provideDesignSystem, baseComponents } = designSystem;
+
+  /**
+   * Register any PBC components with the design system
+   */
+  getApp().registerComponents({
+    designSystem,
+  });
+
+  provideDesignSystem().register(
+    baseComponents,
+    zeroGridComponents,
+    g2plotChartsComponents,
+    foundationLayoutComponents,
+  );
+}
+</code></pre><p id="5f2f5167-9f47-4cc8-b33a-9b7dc03c0c79" class="">
+</p><p id="7099522b-10e9-4137-9297-161470f3e1a9" class="">Then update your route template in <code>client/src/routes/blotter/blotter.template.ts</code> and add the custom component.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2af298d8-6973-4172-9158-10450f1c0214" class="code"><code class="language-JavaScript"> &lt;zero-layout-item title=&quot;Positions&quot;&gt;
+     &lt;positions-grid&gt;&lt;/positions-grid&gt;
+ &lt;/zero-layout-item&gt;</code></pre><p id="9bb289ee-11aa-4b58-8468-59b675baf99f" class="">
+</p><p id="c13cab6b-f199-45fe-b429-b07159f38047" class="">
+</p><p id="4e7ca405-fb65-4639-8e77-ae36367495ef" class=""><strong>And now we can add new functionality!</strong></p><h3 id="e5d1ba73-81c6-451b-8934-89c97b97e95a" class="">3.4 Notifications</h3><p id="0494bd93-5b2e-47cd-b2a4-93b7195c55c5" class="">We’ve already selected the Notifications PBC when creating the application so the foundations have been laid. Firstly, let’s make sure your user can access the configuration:</p><ol type="1" id="dfffdd80-51d6-4849-a53f-b11af914a6e8" class="numbered-list" start="1"><li>You’ll see that the notification module comes with built in rights and profiles - you can check this under the <code>genesis-notify</code> section of the build:</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9cc367a9-9909-4260-bda0-607466524278" class="code"><code class="language-Plain Text">fx-trading-app/server/fx-trading-app/build/genesis-home/genesis-notify/data</code></pre><ol type="1" id="8f2a2776-6172-4c28-96bc-98b6da164f71" class="numbered-list" start="2"><li>All csv files under ‘data’ folders will get sent to the DB when you agree to sending the data during a remap. But you can double check this using <code>DbMon</code> . For example;</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c2f476-b8d3-4ef1-a5fe-5bf0d6aa1c30" class="code"><code class="language-Plain Text">DbMon&gt;table RIGHT
+DbMon:RIGHT&gt;search CODE==&quot;NotificationRuleCreate&quot;
+==================================
+RIGHT
+==================================
+Field Name                               Value                                    Type                
+===========================================================================================
+TIMESTAMP                                2024-05-21 10:03:06.647(n:0,s:1814)      NANO_TIMESTAMP      
+CODE                                     NotificationRuleCreate                   STRING              
+DESCRIPTION                              Create a notification rule               STRING              
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------</code></pre><ol type="1" id="d4865050-a4dc-4d76-bdbe-b5e51c515583" class="numbered-list" start="3"><li>If this data is not present, run a remap and import all data</li></ol><ol type="1" id="f0452d31-5320-4c40-9708-d9d8e2301fb7" class="numbered-list" start="3"><li>Your user must have a profile and rights to access notification configuration. Make sure this is correct in the <code>RIGHT_SUMMARY</code> table using <code>DbMon</code> - you can search a full table using <code>search 1</code>. If it’s not present, find and run the <code>ConsolidateRights</code> script in the Genesis Plugin.</li></ol><ol type="1" id="4ff38751-9844-4ff8-9e09-fdccfdfbfc5c" class="numbered-list" start="4"><li>You’re now free to create notifications! Make sure you enter details for every field</li></ol><figure id="9869bc31-e428-4d84-9186-982bbaea4255" class="image"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2013.png"><img style="width:816px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2013.png"/></a></figure><ol type="1" id="05f8301c-21e8-491a-8207-dd989894dc14" class="numbered-list" start="7"><li>Try adding a rule on the positions table such that you’d get a notification when a currency total, on a date, exceeds a threshold</li></ol><h3 id="24a5cc1d-8704-4747-a817-53e616450abb" class="">3.5 Reporting</h3><p id="265a26c5-8187-4e2a-b166-b5ee060c5373" class="">As you’ve already configured the reporting module during Create, and imported your users, profiles and rights when setting up notifications, you’re free to build reports!</p><p id="1ad48f84-207b-4ed9-acbd-ae6384b84da2" class="">You can configure reports on multiple entities and trigger the download of data adhoc.</p><p id="bdee534f-fdd3-4486-a0dd-96e32fcf6f4f" class="">
+</p><p id="cec586f1-0152-42fc-bd28-faa70798ecb4" class=""><div class="indented"><p id="c74df8bc-0d86-479d-b6ee-71c8e112ab2d" class="">
+</p><p id="19798cbc-2fb6-4148-b98c-c9ff85d2c76c" class="">
+</p></div></p><h3 id="cdf5d636-f7e0-460b-81d1-03d7d53902b8" class="">3.6 Fetching BOOK information from reference table and displaying it while creating Trade</h3><p id="65aec174-80af-4cec-aa18-89e6c5332136" class="">Lookups are a very powerful tool and useful for managing static data such as clients and books in your portfolio. Genesis uses Request Replies to support this use case. This section will guide you through building a static data table and using this data to drive a lookup for inserting and amending a trade.</p><ol type="1" id="7a10511d-44ad-4825-a61e-1d1c1e5f3023" class="numbered-list" start="1"><li>Add a new <code>Entity/table</code> in the <code>fx-trading-tables-dictionary.kts</code></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b0590239-e06e-493d-a37c-1f8de2e42054" class="code"><code class="language-Kotlin"> table(name = &quot;BOOK&quot;, id = 11_006){
+    field(&quot;BOOK_ID&quot;, LONG).autoIncrement().notNull()
+    field(&quot;NAME&quot;, STRING).notNull()
+    field(&quot;DESCRIPTION&quot;, STRING(1000))
+
+    primaryKey (&quot;BOOK_ID&quot;)
+  }</code></pre><ol type="1" id="3a2944b6-c6f5-4db5-85d9-637357fd5663" class="numbered-list" start="2"><li>Add a <code>query</code> in the <code>fx-trading-dataserver.kts</code> </li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa5c9f9-d039-4e92-995e-fa37d9c4178c" class="code"><code class="language-Kotlin">query(&quot;ALL_BOOKS&quot;, BOOK)</code></pre><ol type="1" id="ea080f09-dc44-4d98-ba51-d48f32e9a795" class="numbered-list" start="3"><li>Prepare the <code>data</code> file name <code>BOOKS.csv</code> and store in <code>fx-trading-app/src/main/genesis/data</code> folder. Below shown data is just a sample, it could be anything as described in the table definition in step 3.5.1</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8765a307-9aaa-404d-aed1-7160dae4479e" class="code"><code class="language-Kotlin">&quot;NAME&quot;,&quot;DESCRIPTION&quot;
+&quot;Book 1&quot;,&quot;Book 1&quot;
+&quot;Book 2&quot;,&quot;Book 2&quot;
+&quot;Book 3&quot;,&quot;Book 3&quot;
+&quot;Book 4&quot;,&quot;Book 4&quot;
+&quot;Book 5&quot;,&quot;Book 5&quot;</code></pre><ol type="1" id="b6f5ad18-bfa8-4bea-b282-23eb912b18c3" class="numbered-list" start="4"><li>Let’s load this data into the database. You’ll first need to run a <code>Remap</code> (check the database icon at the top of the Genesis plugin!) - this will update your tables dictionary and add the new <code>BOOK</code> table.</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a6a8cea3-0f68-433c-a623-3b89b25b92fa" class="code"><code class="language-Plain Text">===========Starting remap=========
+Table Changes
+Added table BOOK</code></pre><ol type="1" id="2ed7cabc-4425-42fc-a9f5-df9332c47794" class="numbered-list" start="5"><li>You’ll also have the option to import data during the remap as well. If you skipped the import, you can also import directly by right clicking on the csv file and selecting <code>Import CSV(s) to Genesis</code> </li></ol><figure id="fcc7b771-8d31-4087-b94f-79ee3947405c" class="image" style="text-align:left"><a href="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2014.png"><img style="width:288px" src="Genesis%20Create%20Instructions%209bdaab732793499e96e2dcdb182226f4/Untitled%2014.png"/></a></figure><ol type="1" id="9ba0c2ef-966d-4551-99dc-8395abd814f0" class="numbered-list" start="5"><li>Next, go to your UI template file under the client folder of your project. For example, <code>fx-trading/client/src/routes/blotter/blotter.template.ts</code>, and modify the BOOK control in the following two schemas - <code>:createFormUiSchema</code> <code>:updateFormUiSchema</code> . The required fields are <code><em>allOptionsResourceName</em></code><em> , </em><code><em>valueField</em></code><em> and </em><code><em>labelField</em></code><em>.</em> This creates the lookup and drop down menu in the front end.</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7872b1f1-924e-44d3-a928-25fbc4dc1f4a" class="code"><code class="language-Kotlin"> {
+                   &quot;type&quot;: &quot;Control&quot;,
+                   &quot;label&quot;: &quot;Book&quot;,
+                   &quot;scope&quot;: &quot;#/properties/BOOK&quot;,
+                   &quot;options&quot;: {
+                     &quot;allOptionsResourceName&quot;:&#x27;ALL_BOOKS&#x27;,
+                     &quot;valueField&quot;:&quot;NAME&quot;,
+                     &quot;labelField&quot;:&quot;NAME&quot;,
+                     &quot;hidden&quot;: false,
+                     &quot;readonly&quot;: false,
+                     &quot;textarea&quot;: false,
+                     &quot;isPassword&quot;: false
+                   }
+                 },</code></pre><ol type="1" id="128d4383-4a5a-487b-b6a1-6f9205b6a3d0" class="numbered-list" start="6"><li><mark class="highlight-orange">OPTIONAL </mark>- You can continue to repeat these steps with look-ups such as counterparties, currencies, etc. </li></ol><h3 id="fde94640-d768-4655-8c6b-d7e5e11c16a3" class="">3.7 Instruction for inserting data using CSV (DataPipeline) </h3><p id="fbca1f7c-ee3f-406a-9642-3444eee19d3b" class="">This section gets you building a data pipeline. Simulating an external system, a csv file will be loaded into the database. This mimics processes such as static data loads via SFTP - this could be exchange rate or instrument data sourced from a secondary system. </p><ol type="1" id="fb3a321a-9c6a-4a39-8e3f-52b72ea7a413" class="numbered-list" start="1"><li>Create a new table name <code>LOAN</code> using following definition</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b2bf6fe7-bf27-4905-84b9-2bf0ae366546" class="code"><code class="language-Kotlin">table(name = &quot;LOAN&quot;, id = 11_008){
+    field(&quot;LOAN_ID&quot;, LONG).autoIncrement().notNull()
+    field(&quot;CLIENT_NAME&quot;, STRING).notNull()
+    field(&quot;FACILITY_NAME&quot;,STRING).notNull()
+    field(&quot;FACILITY_AMOUNT&quot;,BIGDECIMAL)
+    field(&quot;FACILITY_CCY&quot;,STRING).notNull()
+    field(&quot;DRAWDOWN_DATE&quot;, STRING)
+    field(&quot;DRAWDOWN_AMOUNT&quot;,BIGDECIMAL)
+    field(&quot;DRAWDOWN_CCY&quot;,STRING)
+    field(&quot;PAYMENT_DATE&quot;,STRING)
+    field(&quot;PAYMENT_CCY&quot;,STRING)
+    field(&quot;PAYMENT_AMOUNT&quot;,BIGDECIMAL)
+    primaryKey(&quot;LOAN_ID&quot;)
+  }</code></pre><ol type="1" id="d81346ec-3440-4222-a1de-f043d37dd588" class="numbered-list" start="2"><li>Prepare the data file for upload and name this file <code>LOAN.csv</code> . No need to load this into your database yet, you’ll do that via the pipeline shortly</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7b8e5908-b6c3-4d3c-9230-e6a2684eb2c0" class="code"><code class="language-Kotlin">&quot;LOAN_ID&quot;,&quot;CLIENT_NAME&quot;,&quot;FACILITY_NAME&quot;,&quot;FACILITY_AMOUNT&quot;,&quot;FACILITY_CCY&quot;,&quot;DRAWDOWN_DATE&quot;,&quot;DRAWDOWN_AMOUNT&quot;,&quot;DRAWDOWN_CCY&quot;,&quot;PAYMENT_DATE&quot;,&quot;PAYMENT_CCY&quot;,&quot;PAYMENT_AMOUNT&quot;
+&quot;1&quot;,&quot;Shizen Energy&quot;,&quot;SHE&quot;,&quot;85000000.00&quot;,&quot;YEN&quot;,&quot;2024-01-24&quot;,&quot;50000000.00&quot;,&quot;YEN&quot;,&quot;2024-07-24&quot;,&quot;YEN&quot;,&quot;51750000.00&quot;
+&quot;2&quot;,&quot;Shizen Energy&quot;,&quot;SHE&quot;,&quot;85000000.00&quot;,&quot;YEN&quot;,&quot;2024-02-20&quot;,&quot;35000000.00&quot;,&quot;YEN&quot;,&quot;2024-08-20&quot;,&quot;YEN&quot;,&quot;36225000.00&quot;
+&quot;3&quot;,&quot;SECI&quot;,&quot;SEC&quot;,&quot;2000000000.00&quot;,&quot;INR&quot;,&quot;2024-01-20&quot;,&quot;950000000.00&quot;,&quot;INR&quot;,&quot;2024-06-20&quot;,&quot;INR&quot;,&quot;992750000.00&quot;
+&quot;4&quot;,&quot;SECI&quot;,&quot;SEC&quot;,&quot;2000000000.00&quot;,&quot;INR&quot;,&quot;2024-03-16&quot;,&quot;1050000000.00&quot;,&quot;INR&quot;,&quot;2024-09-16&quot;,&quot;INR&quot;,&quot;1097250000.00&quot;
+&quot;5&quot;,&quot;SEASPAN CORP&quot;,&quot;SEASC&quot;,&quot;100000000.00&quot;,&quot;SGD&quot;,&quot;2024-12-03&quot;,&quot;100000000.00&quot;,&quot;SGD&quot;,&quot;2024-09-12&quot;,&quot;SGD&quot;,&quot;102500000.00&quot;
+&quot;6&quot;,&quot;SHELL ENERGY&quot;,&quot;SHELLE&quot;,&quot;500000000.00&quot;,&quot;AUD&quot;,&quot;2024-11-04&quot;,&quot;500000000.00&quot;,&quot;AUD&quot;,&quot;2024-10-11&quot;,&quot;AUD&quot;,&quot;515000000.00&quot;
+&quot;7&quot;,&quot;HYUNDAI CARD&quot;,&quot;HYUNC&quot;,&quot;350000000000.00&quot;,&quot;KRW&quot;,&quot;2024-01-22&quot;,&quot;150000000000.00&quot;,&quot;KRW&quot;,&quot;2024-07-22&quot;,&quot;KRW&quot;,&quot;156000000000.00&quot;
+&quot;8&quot;,&quot;HYUNDAI CARD&quot;,&quot;HYUNC&quot;,&quot;350000000000.00&quot;,&quot;KRW&quot;,&quot;2024-02-19&quot;,&quot;200000000000.00&quot;,&quot;KRW&quot;,&quot;2024-08-19&quot;,&quot;KRW&quot;,&quot;208000000000.00&quot;
+&quot;9&quot;,&quot;MITSUI OSK LINES&quot;,&quot;MOLL&quot;,&quot;150000000000.00&quot;,&quot;YEN&quot;,&quot;2024-01-27&quot;,&quot;75000000000.00&quot;,&quot;YEN&quot;,&quot;2024-07-27&quot;,&quot;YEN&quot;,&quot;77625000000.00&quot;
+&quot;10&quot;,&quot;MITSUI OSK LINES&quot;,&quot;MOLL&quot;,&quot;150000000000.00&quot;,&quot;YEN&quot;,&quot;2024-05-14&quot;,&quot;75000000000.00&quot;,&quot;YEN&quot;,&quot;2024-11-14&quot;,&quot;YEN&quot;,&quot;77625000000.00&quot;
+</code></pre><ol type="1" id="c624373e-432b-44d9-ba2d-1af5924fa7d7" class="numbered-list" start="3"><li>Prepare the data pipeline in <code>fx-trading/server/fx-trading-app/src/main/genesis/scripts/fx-trading-data-pipeline.kts</code><br/>You’ll see we are using system definitions in the pipelines configuration to drive the location of the file, meaning it can be environment specific and not hardcoded<br/></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ff569fd-9118-4f5e-b4c6-d859f8c3642b" class="code"><code class="language-Kotlin">pipelines {
+    csvSource(&quot;fx-loan-import&quot;){
+        location=&quot;file:&quot;+systemDefinition.getValue(&quot;UPLOAD_DIR&quot;)+&quot;?fileName=&quot;+systemDefinition.getValue(&quot;UPLOAD_FILE&quot;)
+        map(&quot;e2e-test&quot;, LOAN){
+            LOAN{
+            }
+        }
+        onCompletion {
+            LOG.info(&quot;Successful Rows ==&gt; ${result.successfulRows}&quot;)
+            LOG.info(&quot;Failed Rows ==&gt; ${result.successfulRows}&quot;)
+            LOG.info(&quot;Existing Records ==&gt; ${entityDb.getBulk(LOAN).toList().size}&quot;)
+            LOG.info(&quot;Imported File Name =&gt; ${context.fileName}&quot;)
+        }
+    }
+}</code></pre><ol type="1" id="d0102c5d-837a-43ab-85a4-f628e1357c13" class="numbered-list" start="4"><li>Configure the <code>fx-trading-process.xml</code> to enable datapipeline. This sets up a new process to run the import of data, driving from the <code>genesis-pal-datapipeline</code> module.</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="855c083a-7ab1-4001-b492-e339d7c489be" class="code"><code class="language-Kotlin">  &lt;process name=&quot;FX_TRADING_DATAPIPELINE&quot;&gt;
+    &lt;groupId&gt;FX_TRADING&lt;/groupId&gt;
+    &lt;start&gt;true&lt;/start&gt;
+    &lt;options&gt;-Xmx512m -DRedirectStreamsToLog=true -DXSD_VALIDATE=false&lt;/options&gt;
+    &lt;module&gt;genesis-pal-datapipeline&lt;/module&gt;
+    &lt;package&gt;global.genesis.datapipeline.pal&lt;/package&gt;
+    &lt;script&gt;fx-trading-data-pipeline.kts&lt;/script&gt;
+    &lt;description&gt;External data ingress pipeline&lt;/description&gt;
+    &lt;language&gt;pal&lt;/language&gt;
+    &lt;loggingLevel&gt;DEBUG&lt;/loggingLevel&gt;
+  &lt;/process&gt;
+</code></pre><ol type="1" id="3f449c6e-e516-43e5-a745-4f76a8c680c1" class="numbered-list" start="5"><li>Configure the <code>fx-trading-service-definition.xml</code> </li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="482c619a-3e45-439b-94b1-f220c275f903" class="code"><code class="language-Kotlin">&lt;service host=&quot;localhost&quot; name=&quot;FX_TRADING_DATAPIPELINE&quot; port=&quot;9702&quot;/&gt;</code></pre><ol type="1" id="aeb134ab-6b72-4857-a976-43f4056d60b6" class="numbered-list" start="6"><li>Configure the environment variable for <code>LOCAL_HOST</code> block in <code>genesis-system-definition.kts</code> </li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="da747ada-4e37-4835-b715-cd16989799ac" class="code"><code class="language-Kotlin">item(name = &quot;LogFrameworkConfig&quot;, value = &quot;log4j2-default.xml&quot;)
+item(name = &quot;UPLOAD_DIR&quot;, value = &quot;testData&quot;)
+item(name = &quot;UPLOAD_FILE&quot;, value = &quot;LOAN.csv&quot;)</code></pre><ol type="1" id="1d74fd32-81fd-4a7c-9557-df1daabb7056" class="numbered-list" start="7"><li>Create directory <code>testData</code> in the root folder of project. </li></ol><ol type="1" id="68d618bf-a1a5-4642-a85a-873cc995b4a5" class="numbered-list" start="8"><li>Compile —&gt; Build and Deploy. </li></ol><ol type="1" id="75499041-8432-4d58-9e28-cbb2e9ed14e5" class="numbered-list" start="9"><li>Copy <code>LOAN.csv</code> in <code>testData</code> and it should process and store the file. </li></ol><ol type="1" id="711e1519-9b25-4578-9fe5-fb7c17fddb3d" class="numbered-list" start="10"><li>You can check this via <code>DbMon</code></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bdab5db1-0e25-46ec-a0c8-cbc4781c48a6" class="code"><code class="language-Plain Text">==================================
+Genesis Database Monitor
+Enter &#x27;help&#x27; for a list of commands
+==================================
+DbMon&gt;table LOAN
+DbMon:LOAN&gt;count
+The entity LOAN contains 10 records </code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

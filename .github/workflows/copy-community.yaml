@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  copy-to-community:
+    name: Sync to genesiscommunitysuccess github repo
+    runs-on: appdev-selfhosted-al2023
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Sync repos
+        run: |
+          git remote add --mirror=fetch secondary https://genesiscommunitysuccessbot:${{secrets.GENESISCOMMUNITYSUCCESS_TOKEN}}@github.com/genesiscommunitysuccess/gks.git
+          git fetch origin
+          git restore --staged .github
+          git push secondary --all
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
